@@ -1,14 +1,35 @@
 <template>
-  <p v-for="todo in todos" v-bind:key="todo">{{todo}}</p>
+  <TodoItem v-for="todo in todos" v-bind:key="todo.id" v-bind:todoProps="todo" />
 </template>
 
 <script>
 import {ref} from 'vue'
+import TodoItem from './TodoItem.vue';
 
 export default {
     name: 'Todos',
+    components: {
+        TodoItem,
+    },
+
     setup() {
-        const todos = ref(['Việc 1', 'Việc 2', 'Việc 3'])
+        const todos = ref([
+            {
+                id: 1,
+                title: 'Việc 1',
+                completed: true
+            },
+            {
+                id: 2,
+                title: 'Việc 2',
+                completed: true
+            },
+            {
+                id: 3,
+                title: 'Việc 3',
+                completed: true
+            },
+        ])
         return {
             todos,
         }
